@@ -1,5 +1,17 @@
 /*
-
+count_lines: cuenta los saltos de linea de un texto
+clean_value: limpia el valor de una linea. Quita los espacios del
+principio y del final, y deja solo 1 espacio entre palabras. Si queda
+vacio o tiene caracteres de control (tabulador, '\r'...) da error
+ej: "   hey     everybody !  " -> "hey everybody !"
+parse_line: separa una linea en clave y valor poniendo '\0' en el texto,
+y guarda la pareja en el array
+ej: "20   :   twenty" -> clave "20", valor "twenty"
+parse_text: recorre todo el texto linea a linea y llama a parse_line
+con cada una (las lineas vacias se saltan)
+load_dict: la que lo ejecuta todo. Lee el fichero con read_file,
+reserva el array de parejas y lo rellena con parse_text.
+Se llama desde main.c
 */
 #include "rush02.h"
 

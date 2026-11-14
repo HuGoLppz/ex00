@@ -1,4 +1,13 @@
-
+/*
+La cabecera, el archivo que comparten todos los .c:
+-los include de las funciones permitidas: unistd.h (write, read,
+close), stdlib.h (malloc, free) y fcntl.h (open)
+-t_entry: una pareja del diccionario
+ej: "20: twenty" -> key "20", value "twenty"
+-t_dict: todo lo que necesita el programa. El texto del fichero, el
+array de parejas, cuántas hay y los interruptores print y first
+-los prototipos de las funciones que se usan desde otros archivos
+*/
 #ifndef RUSH02_H
 # define RUSH02_H
 

@@ -1,5 +1,5 @@
 /*
-aquí está la función read_file, que devuelve todo el texto del
+Aquí está la función read_file, que devuelve todo el texto del
 fichero numbers.dict. Para ello con file_size se calcula el
 tamaño del archivo a leer, con read_into, copias la información.
 Lo ejecuta todo read_file, función que se ejecuta en parse_dict.c

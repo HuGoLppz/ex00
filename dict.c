@@ -1,4 +1,17 @@
-
+/*
+Aquí están las funciones que usan el diccionario ya cargado:
+-find_value: busca una clave en el array de parejas y devuelve su valor
+(o NULL si no está)
+-say_word: escribe la palabra de una clave. En el ensayo (print == 0)
+solo comprueba que existe. Si no es la primera palabra pone un espacio
+delante
+-say_digits: crea una clave de 1 o 2 cifras y la busca
+ej: ('4', '0') -> "40" -> forty
+-say_scale: crea la clave de una escala (un 1 seguido de ceros) y la
+busca
+ej: 6 ceros -> "1000000" -> million
+-free_dict: libera la memoria del diccionario (text y entries)
+*/
 #include "rush02.h"
 
 static char	*find_value(t_dict *dict, char *key)

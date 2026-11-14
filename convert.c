@@ -1,15 +1,17 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   convert.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/14 13:50:21 by marvin            #+#    #+#             */
-/*   Updated: 2026/11/14 13:50:21 by marvin           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+/*
+El archivo que convierte el número en palabras, de 3 en 3 cifras:
+-pad_number: añade ceros a la izquierda hasta que la longitud sea
+múltiplo de 3
+ej: "1234567" -> "001234567"
+-say_group: dice un bloque de 3 cifras (centena, decena y unidad)
+ej: "342" -> three hundred forty two
+-say_all_groups: recorre todos los bloques y detrás de cada uno dice
+su escala (thousand, million...). Los bloques "000" se saltan
+-say_number: dice el número entero. El 0 va aparte, porque su bloque
+es "000" y no se diría nada
+-convert: primero hace un ensayo sin escribir para ver si están todas
+las palabras, y si están lo repite escribiendo. Se llama desde main.c
+*/
 #include "rush02.h"
 
 static char	*pad_number(char *nb)

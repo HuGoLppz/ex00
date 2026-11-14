@@ -1,3 +1,8 @@
+# El archivo que compila el programa:
+# -make: compila los .c y crea rush-02
+# -make clean: borra los .o
+# -make fclean: borra los .o y rush-02
+# -make re: lo borra todo y lo vuelve a compilar
 
 NAME	= rush-02
 
