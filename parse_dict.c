@@ -106,10 +106,10 @@ static int	parse_text(t_dict *dict)
 
 int	load_dict(t_dict *dict, char *path)
 {
+	dict->text = NULL;
 	dict->entries = NULL;
 	dict->size = 0;
-	dict->text = read_file(path);
-	if (dict->text == NULL)
+	if (!read_file(path, &dict->text))
 		return (0);
 	dict->entries = malloc(sizeof(t_entry) * count_lines(dict->text));
 	if (dict->entries == NULL)

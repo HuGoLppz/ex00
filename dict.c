@@ -1,7 +1,7 @@
 /*
 Aquí están las funciones que usan el diccionario ya cargado:
--find_value: busca una clave en el array de parejas y devuelve su valor
-(o NULL si no está)
+-find_value: busca una clave en el array de parejas. Si la encuentra
+guarda su valor en *value y devuelve 1, si no está devuelve 0
 -say_word: escribe la palabra de una clave. En el ensayo (print == 0)
 solo comprueba que existe. Si no es la primera palabra pone un espacio
 delante
@@ -14,7 +14,7 @@ ej: 6 ceros -> "1000000" -> million
 */
 #include "rush02.h"
 
-static char	*find_value(t_dict *dict, char *key)
+static int	find_value(t_dict *dict, char *key, char **value)
 {
 	int	i;
 
@@ -22,18 +22,20 @@ static char	*find_value(t_dict *dict, char *key)
 	while (i < dict->size)
 	{
 		if (ft_strcmp(dict->entries[i].key, key) == 0)
-			return (dict->entries[i].value);
+		{
+			*value = dict->entries[i].value;
+			return (1);
+		}
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
 
 int	say_word(t_dict *dict, char *key)
 {
 	char	*value;
 
-	value = find_value(dict, key);
-	if (value == NULL)
+	if (!find_value(dict, key, &value))
 		return (0);
 	if (dict->print == 1)
 	{

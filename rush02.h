@@ -35,7 +35,7 @@ int		ft_strcmp(char *s1, char *s2);
 void	ft_putstr(char *str);
 int		is_number(char *str);
 char	*skip_zeros(char *str);
-char	*read_file(char *path);
+int		read_file(char *path, char **text);
 int		load_dict(t_dict *dict, char *path);
 int		say_word(t_dict *dict, char *key);
 int		say_digits(t_dict *dict, char a, char b);

@@ -1,7 +1,8 @@
 /*
-Aquí está la función read_file, que devuelve todo el texto del
-fichero numbers.dict. Para ello con file_size se calcula el
-tamaño del archivo a leer, con read_into, copias la información.
+Aquí está la función read_file, que guarda todo el texto del
+fichero numbers.dict en *text y devuelve 1 (o 0 si hay error).
+Para ello con file_size se calcula el tamaño del archivo a leer,
+con read_into, copias la información.
 Lo ejecuta todo read_file, función que se ejecuta en parse_dict.c
 */
 #include "rush02.h"
@@ -45,21 +46,22 @@ static int	read_into(char *path, char *text, int size)
 	return (1);
 }
 
-char	*read_file(char *path)
+int	read_file(char *path, char **text)
 {
-	char	*text;
+	char	*content;
 	int		size;
 
 	size = file_size(path);
 	if (size < 0)
-		return (NULL);
-	text = malloc(size + 1);
-	if (text == NULL)
-		return (NULL);
-	if (!read_into(path, text, size))
+		return (0);
+	content = malloc(size + 1);
+	if (content == NULL)
+		return (0);
+	if (!read_into(path, content, size))
 	{
-		free(text);
-		return (NULL);
+		free(content);
+		return (0);
 	}
-	return (text);
+	*text = content;
+	return (1);
 }

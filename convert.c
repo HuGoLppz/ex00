@@ -1,7 +1,8 @@
 /*
 El archivo que convierte el número en palabras, de 3 en 3 cifras:
 -pad_number: añade ceros a la izquierda hasta que la longitud sea
-múltiplo de 3
+múltiplo de 3. Guarda el resultado en *padded y devuelve 1 (o 0 si
+falla el malloc)
 ej: "1234567" -> "001234567"
 -say_group: dice un bloque de 3 cifras (centena, decena y unidad)
 ej: "342" -> three hundred forty two
@@ -14,31 +15,32 @@ las palabras, y si están lo repite escribiendo. Se llama desde main.c
 */
 #include "rush02.h"
 
-static char	*pad_number(char *nb)
+static int	pad_number(char *nb, char **padded)
 {
-	char	*padded;
+	char	*str;
 	int		len;
 	int		zeros;
 	int		i;
 
 	len = ft_strlen(nb);
 	zeros = (3 - len % 3) % 3;
-	padded = malloc(zeros + len + 1);
-	if (padded == NULL)
-		return (NULL);
+	str = malloc(zeros + len + 1);
+	if (str == NULL)
+		return (0);
 	i = 0;
 	while (i < zeros)
 	{
-		padded[i] = '0';
+		str[i] = '0';
 		i++;
 	}
 	while (i < zeros + len)
 	{
-		padded[i] = nb[i - zeros];
+		str[i] = nb[i - zeros];
 		i++;
 	}
-	padded[i] = '\0';
-	return (padded);
+	str[i] = '\0';
+	*padded = str;
+	return (1);
 }
 
 static int	say_group(t_dict *dict, char *g)
@@ -85,8 +87,7 @@ static int	say_number(t_dict *dict, char *nb)
 
 	if (nb[0] == '0')
 		return (say_word(dict, "0"));
-	padded = pad_number(nb);
-	if (padded == NULL)
+	if (!pad_number(nb, &padded))
 		return (0);
 	ok = say_all_groups(dict, padded);
 	free(padded);
